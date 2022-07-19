@@ -1,7 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, SafeAreaView } from "react-native";
 
-export default function WelcomeScreen(props) {
+export default function WelcomeScreen({ navigation }) {
+  const loginButtonHandler = () => {
+    navigation.navigate("Login");
+  };
+  const signupButtonHandler = () => {
+    navigation.navigate("Signup");
+  };
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Jai Guru Dev</Text>
@@ -11,6 +17,7 @@ export default function WelcomeScreen(props) {
             style={styles.loginButton}
             color="#FF9933"
             title="Login"
+            onPress={loginButtonHandler}
           ></Button>
         </View>
         <View style={styles.signupContainer}>
@@ -18,6 +25,7 @@ export default function WelcomeScreen(props) {
             style={styles.signupButton}
             color="#FF9933"
             title="Sign up"
+            onPress={signupButtonHandler}
           ></Button>
         </View>
       </View>
@@ -28,9 +36,7 @@ export default function WelcomeScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //backgroundColor: "#FF9933",
     alignItems: "center",
-    // justifyContent: "center",
     justifyContent: "flex-end",
   },
   buttonContainer: {
