@@ -7,6 +7,8 @@ import {
   SafeAreaView,
   TextInput,
 } from "react-native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config";
 
 export default function Login({ navigation }) {
   const [userId, setUserId] = useState();
@@ -16,7 +18,18 @@ export default function Login({ navigation }) {
   };
   const handleLogin = () => {
     console.log(userId, password);
-    navigation.navigate("HomeScreen");
+
+    signInWithEmailAndPassword(auth, userId, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+        navigation.navigate("HomeScreen");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   };
   return (
     <SafeAreaView style={styles.container}>

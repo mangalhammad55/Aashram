@@ -4,37 +4,49 @@ import {
   Text,
   View,
   Button,
-  DrawerLayoutAndroid,
   SafeAreaView,
+  FlatList,
 } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
+import App from "./Apps";
 
+const DATA = [
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    title: "Ank 1",
+  },
+  {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    title: "Ank 2",
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Ank 3",
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Ank 4",
+  },
+];
+const Item = ({ title }) => (
+  <View style={styles.item}>
+    {/* <Text style={styles.title}>{title}</Text> */}
+    <Button style={styles.titleButton} title={title}></Button>
+  </View>
+);
 export default function HomeScreen() {
-  const drawer = useRef(null);
-  const [drawerPosition, setDrawerPosition] = useState("left");
-  const changeDrawerPosition = () => {
-    if (drawerPosition === "left") {
-      setDrawerPosition("right");
-    } else {
-      setDrawerPosition("left");
-    }
-  };
-
-  const navigationView = () => (
-    <View style={[styles.container, styles.navigationContainer]}>
-      <Text style={styles.paragraph}>I'm in the Drawer!</Text>
-      <Button
-        title="Close drawer"
-        onPress={() => drawer.current.closeDrawer()}
-      />
-    </View>
+  const renderItem = ({ item }) => (
+    <Item onPress={handleAnkButtonPress(item.id)} title={item.title} />
   );
+  const handleAnkButtonPress = (id) => {
+    console.log(id);
+  };
   return (
     <SafeAreaView>
       <View>
         <Text style={styles.text}>Jai Guru Dev</Text>
       </View>
-      <View style={styles.slider}>
+      {/* <View style={styles.slider}>
         <SliderBox
           sliderBoxHeight={200}
           images={[
@@ -50,40 +62,56 @@ export default function HomeScreen() {
           ImageComponentStyle={{ borderRadius: 15, width: "97%" }}
           imageLoadingColor="#FF9933"
         />
+      </View> */}
+      <View>
+        <Text style={styles.pawanSansmaranText}>Pawan Sansmaran</Text>
+        <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          numColumns="2"
+        />
+        <App></App>
       </View>
-
-      {/* <DrawerLayoutAndroid
-        ref={drawer}
-        drawerWidth={300}
-        drawerPosition={drawerPosition}
-        renderNavigationView={navigationView}
-      >
-        <View style={styles.container}>
-          <Text style={styles.paragraph}>Drawer on the {drawerPosition}!</Text>
-          <Button
-            title="Change Drawer Position"
-            onPress={() => changeDrawerPosition()}
-          />
-          <Text style={styles.paragraph}>
-            Swipe from the side or press button below to see it!
-          </Text>
-          <Button
-            title="Open drawer"
-            onPress={() => drawer.current.openDrawer()}
-          />
-        </View>
-      </DrawerLayoutAndroid> */}
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  item: {
+    padding: 5,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    alignItems: "center",
+    width: 160,
+    height: 50,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: "#b3b3cc",
+  },
+  titleButton: {
+    fontSize: 24,
+  },
   text: {
     fontSize: 20,
     paddingLeft: 20,
     textAlign: "center",
     color: "#FF9933",
     paddingTop: 10,
+  },
+  pawanSansmaranText: {
+    fontSize: 20,
+    paddingLeft: 20,
+    paddingTop: 10,
+  },
+  pawanSansmaranButton: {
+    width: "20px",
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginTop: 12,
+    marginBottom: 12,
+    padding: 10,
   },
   slider: {
     paddingTop: 20,
