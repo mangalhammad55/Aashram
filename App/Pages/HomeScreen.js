@@ -12,41 +12,45 @@ import App from "./Apps";
 
 const DATA = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    id: "0",
     title: "Ank 1",
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    id: "1",
     title: "Ank 2",
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    id: "2",
     title: "Ank 3",
   },
   {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    id: "3",
     title: "Ank 4",
   },
 ];
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    {/* <Text style={styles.title}>{title}</Text> */}
-    <Button style={styles.titleButton} title={title}></Button>
-  </View>
-);
+
 export default function HomeScreen() {
-  const renderItem = ({ item }) => (
-    <Item onPress={handleAnkButtonPress(item.id)} title={item.title} />
-  );
-  const handleAnkButtonPress = (id) => {
+  const renderItem = ({ item }) => <Item id={item.id} title={item.title} />;
+  const handleAnkButtonPress = (id = 0) => {
     console.log(id);
   };
+  const Item = ({ title, id }) => (
+    <View style={styles.item}>
+      {/* <Text style={styles.title}>{title}</Text> */}
+      <Button
+        onPress={() => handleAnkButtonPress(id)}
+        style={styles.titleButton}
+        title={title}
+        color="#2173f3"
+      ></Button>
+    </View>
+  );
   return (
     <SafeAreaView>
       <View>
         <Text style={styles.text}>Jai Guru Dev</Text>
       </View>
-      {/* <View style={styles.slider}>
+      <View style={styles.slider}>
         <SliderBox
           sliderBoxHeight={200}
           images={[
@@ -62,9 +66,8 @@ export default function HomeScreen() {
           ImageComponentStyle={{ borderRadius: 15, width: "97%" }}
           imageLoadingColor="#FF9933"
         />
-      </View> */}
-      <View>
-        <Text style={styles.pawanSansmaranText}>Pawan Sansmaran</Text>
+
+        <Text style={styles.pawanSmaranText}>Pawan Smaran</Text>
         <FlatList
           data={DATA}
           renderItem={renderItem}
@@ -83,14 +86,14 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     alignItems: "center",
-    width: 160,
+    width: "40%",
     height: 50,
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: "#b3b3cc",
+    // borderRadius: 20,
+    // borderWidth: 2,
+    // borderColor: "#b3b3cc",
   },
   titleButton: {
-    fontSize: 24,
+    fontSize: 30,
   },
   text: {
     fontSize: 20,
@@ -99,8 +102,8 @@ const styles = StyleSheet.create({
     color: "#FF9933",
     paddingTop: 10,
   },
-  pawanSansmaranText: {
-    fontSize: 20,
+  pawanSmaranText: {
+    fontSize: 24,
     paddingLeft: 20,
     paddingTop: 10,
   },
