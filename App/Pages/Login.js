@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,18 +6,13 @@ import {
   Button,
   SafeAreaView,
   TextInput,
-  Switch,
 } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config";
-import { Icon } from "react-native-vector-icons/icon";
 
 export default function Login({ navigation }) {
   const [userId, setUserId] = useState();
   const [password, setPassword] = useState();
-  const [err, setErr] = useState(false);
-  const [errMessage, setErrMessage] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const signupButtonHandler = () => {
     navigation.navigate("Signup");
   };
@@ -34,12 +29,7 @@ export default function Login({ navigation }) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        setErr(true);
-        setErrMessage("Invalid User Credentials.");
       });
-  };
-  const toggleSwitch = () => {
-    setShowPassword(!showPassword);
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -49,19 +39,14 @@ export default function Login({ navigation }) {
           onChangeText={setUserId}
           value={userId}
           placeholder="User Id"
-          error={err}
-          errMessage={errMessage}
         />
         <TextInput
           style={styles.inputField}
           onChangeText={setPassword}
           value={password}
+          autoComplete="password"
           placeholder="Password"
-          secureTextEntry={showPassword}
-          textContentType="password"
         />
-        {/* <Switch onValueChange={toggleSwitch} value={showPassword} /> */}
-
         <Button
           style={styles.loginButton}
           onPress={handleLogin}
