@@ -17,23 +17,27 @@ export default function Login({ navigation }) {
     navigation.navigate("Signup");
   };
   const handleLogin = () => {
-    console.log(userId, password);
+    console.log(userId, password, "idpass");
 
     signInWithEmailAndPassword(auth, userId, password)
       .then((userCredential) => {
         // Signed in
+        console.log("loginsuccess");
+        console.log(userCredential, "user creds");
         const user = userCredential.user;
         // ...
         navigation.navigate("HomeScreen");
       })
       .catch((error) => {
+        console.log(error, " login error");
         const errorCode = error.code;
         const errorMessage = error.message;
       });
+    console.log("login completea");
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.form}>
+      <View style={styles.loginForm}>
         <TextInput
           style={styles.inputField}
           onChangeText={setUserId}
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     padding: 10,
   },
-  form: {
+  loginForm: {
     position: "absolute",
     top: 50,
     width: "95%",
