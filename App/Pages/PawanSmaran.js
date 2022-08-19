@@ -10,10 +10,37 @@ import {
   DrawerLayoutAndroid,
   Image,
 } from "react-native";
-import { SliderBox } from "react-native-image-slider-box";
+const DATA = [
+  {
+    id: "0",
+    title: "Ank 1",
+  },
+  {
+    id: "1",
+    title: "Ank 2",
+  },
+  {
+    id: "2",
+    title: "Ank 3",
+  },
+  {
+    id: "3",
+    title: "Ank 4",
+  },
+];
 
-export default function HomeScreen({ navigation }) {
+export default function PawanSmaran({ navigation }) {
   const drawer = useRef(null);
+  const renderItem = ({ item }) => <Item id={item.id} title={item.title} />;
+  const handleAnkButtonPress = (id) => {
+    console.log(id);
+  };
+  const Item = ({ title, id }) => (
+    <View onTouchStart={() => handleAnkButtonPress(id)} style={styles.item}>
+      <Text style={styles.itemTitle}>{title}</Text>
+      {/* <Button style={styles.titleButton} title={title}></Button> */}
+    </View>
+  );
 
   const drawerNavigation = () => (
     <View style={{ padding: 10 }}>
@@ -57,43 +84,26 @@ export default function HomeScreen({ navigation }) {
       drawerPosition="left"
       renderNavigationView={drawerNavigation}
     >
-      {/* <SafeAreaView> */}
+      <Image
+        style={{
+          height: 40,
+          width: 40,
+          padding: 10,
+          marginLeft: 10,
+          marginTop: 10,
+        }}
+        onTouchStart={() => drawer.current.openDrawer()}
+        source={require("../assets/menu2.png")}
+      ></Image>
       <View>
-        <Image
-          style={{
-            height: 40,
-            width: 40,
-            padding: 10,
-            marginLeft: 10,
-            marginTop: 10,
-          }}
-          onTouchStart={() => drawer.current.openDrawer()}
-          source={require("../assets/menu2.png")}
-        ></Image>
-      </View>
-      <View style={styles.slider}>
-        {/* <Button
-          title="Open drawer"
-          onPress={() => drawer.current.openDrawer()}
-        /> */}
-
-        <SliderBox
-          sliderBoxHeight={200}
-          images={[
-            "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg",
-            "https://i.ytimg.com/vi/_uX7dYe329c/hqdefault.jpg",
-            "https://i.ytimg.com/vi/W42bC3OP_tQ/maxresdefault.jpg",
-            "https://i.ytimg.com/vi/7MBxgR2P7qQ/maxresdefault.jpg",
-          ]}
-          dotColor="#FF9933"
-          inactiveDotColor="#90A4AE"
-          autoplay
-          circleLoop
-          ImageComponentStyle={{ borderRadius: 15, width: "97%" }}
-          imageLoadingColor="#FF9933"
+        <Text style={styles.pawanSmaranText}>Pawan Smaran</Text>
+        <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          numColumns="2"
         />
       </View>
-      {/* </SafeAreaView> */}
     </DrawerLayoutAndroid>
   );
 }

@@ -4,6 +4,9 @@ import WelcomeScreen from "../Pages/WelcomeScreen";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import HomeScreen from "../Pages/HomeScreen";
+import SocialMedia from "../Pages/SocialMedia";
+import Location from "../Pages/Location";
+import PawanSmaran from "../Pages/PawanSmaran";
 
 const screens = {
   WelcomeScreen: {
@@ -17,6 +20,15 @@ const screens = {
   },
   HomeScreen: {
     screen: HomeScreen,
+  },
+  SocialMedia: {
+    screen: SocialMedia,
+  },
+  Location: {
+    screen: Location,
+  },
+  PawanSmaran: {
+    screen: PawanSmaran,
   },
 };
 const HomeStack = createStackNavigator(screens);
