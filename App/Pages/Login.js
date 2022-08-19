@@ -6,11 +6,13 @@ import {
   Button,
   SafeAreaView,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config";
 
 export default function Login({ navigation }) {
+  const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState();
   const [password, setPassword] = useState();
   const signupButtonHandler = () => {
@@ -37,6 +39,13 @@ export default function Login({ navigation }) {
   };
   return (
     <SafeAreaView style={styles.container}>
+      {loading ? (
+        <ActivityIndicator
+          // style={{ alignItems: "center" }}
+          size="large"
+          color="#FF9933"
+        />
+      ) : null}
       <View style={styles.loginForm}>
         <TextInput
           style={styles.inputField}

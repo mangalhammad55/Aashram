@@ -6,11 +6,9 @@ import {
   Button,
   SafeAreaView,
   FlatList,
-  Image,
   Linking,
 } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
-import App from "./Apps";
 
 const DATA = [
   {
