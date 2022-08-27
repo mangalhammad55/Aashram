@@ -11,12 +11,8 @@ import {
   Image,
 } from "react-native";
 
-export default function Location({ navigation }) {
+export default function AboutUs({ navigation }) {
   const drawer = useRef(null);
-  const handleWTAClick = () => {
-    const url = "https://goo.gl/maps/7c7D7Skm7k4maXD76";
-    Linking.openURL(url);
-  };
   const drawerNavigation = () => (
     <View style={{ padding: 10 }}>
       <View style={styles.hamburgerButton}>
@@ -45,8 +41,8 @@ export default function Location({ navigation }) {
       </View>
       <View style={styles.hamburgerButton}>
         <Button
-          title="Close drawer"
-          onPress={() => drawer.current.closeDrawer()}
+          title="Aarti, strot"
+          onPress={() => navigation.navigate("AartiStrot")}
         />
       </View>
     </View>
@@ -69,11 +65,8 @@ export default function Location({ navigation }) {
         onTouchStart={() => drawer.current.openDrawer()}
         source={require("../assets/menu2.png")}
       ></Image>
-      <View style={{ padding: 10, marginTop: 10 }}>
-        <Text style={{ marginBottom: 10 }}>
-          Click below button to open Aashram location on google map.
-        </Text>
-        <Button onPress={handleWTAClick} title="way to aashram"></Button>
+      <View style={{ padding: 10 }}>
+        <Text style={{ marginBottom: 10, marginTop: 20 }}>About us</Text>
       </View>
     </DrawerLayoutAndroid>
   );

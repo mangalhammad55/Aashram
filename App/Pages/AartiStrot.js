@@ -11,11 +11,17 @@ import {
   Image,
 } from "react-native";
 
-export default function Location({ navigation }) {
+export default function AartiStrot({ navigation }) {
   const drawer = useRef(null);
-  const handleWTAClick = () => {
-    const url = "https://goo.gl/maps/7c7D7Skm7k4maXD76";
-    Linking.openURL(url);
+  const [showAarti, setShowAarti] = useState(false);
+  const [showStrot, setShowStrot] = useState(false);
+  const handleAartiClick = () => {
+    setShowStrot(false);
+    setShowAarti(true);
+  };
+  const handleStrotClick = () => {
+    setShowAarti(false);
+    setShowStrot(true);
   };
   const drawerNavigation = () => (
     <View style={{ padding: 10 }}>
@@ -45,8 +51,8 @@ export default function Location({ navigation }) {
       </View>
       <View style={styles.hamburgerButton}>
         <Button
-          title="Close drawer"
-          onPress={() => drawer.current.closeDrawer()}
+          title="Aarti, strot"
+          onPress={() => navigation.navigate("AartiStrot")}
         />
       </View>
     </View>
@@ -70,10 +76,22 @@ export default function Location({ navigation }) {
         source={require("../assets/menu2.png")}
       ></Image>
       <View style={{ padding: 10, marginTop: 10 }}>
-        <Text style={{ marginBottom: 10 }}>
-          Click below button to open Aashram location on google map.
-        </Text>
-        <Button onPress={handleWTAClick} title="way to aashram"></Button>
+        <Button
+          style={{ marginBottom: 10, marginTop: 20 }}
+          title="Aarti"
+          onPress={handleAartiClick}
+        ></Button>
+      </View>
+      <View style={{ padding: 10 }}>
+        <Button
+          style={{ marginBottom: 10, marginTop: 20 }}
+          title="Strot"
+          onPress={handleStrotClick}
+        ></Button>
+      </View>
+      <View>
+        {showAarti ? <Text>aarti</Text> : null}
+        {showStrot ? <Text>stort</Text> : null}
       </View>
     </DrawerLayoutAndroid>
   );

@@ -10,6 +10,7 @@ import {
   DrawerLayoutAndroid,
   Image,
 } from "react-native";
+
 const DATA = [
   {
     id: "0",
@@ -27,10 +28,35 @@ const DATA = [
     id: "3",
     title: "Ank 4",
   },
+  {
+    id: "3",
+    title: "Ank 4",
+  },
+  {
+    id: "4",
+    title: "Ank 5",
+  },
+  {
+    id: "5",
+    title: "Ank 6",
+  },
+  {
+    id: "6",
+    title: "Ank 7",
+  },
+  {
+    id: "7",
+    title: "Ank 8",
+  },
+  {
+    id: "8",
+    title: "Ank 9",
+  },
 ];
 
 export default function PawanSmaran({ navigation }) {
   const drawer = useRef(null);
+
   const renderItem = ({ item }) => <Item id={item.id} title={item.title} />;
   const handleAnkButtonPress = (id) => {
     console.log(id);
@@ -38,7 +64,6 @@ export default function PawanSmaran({ navigation }) {
   const Item = ({ title, id }) => (
     <View onTouchStart={() => handleAnkButtonPress(id)} style={styles.item}>
       <Text style={styles.itemTitle}>{title}</Text>
-      {/* <Button style={styles.titleButton} title={title}></Button> */}
     </View>
   );
 
@@ -78,7 +103,6 @@ export default function PawanSmaran({ navigation }) {
   );
   return (
     <DrawerLayoutAndroid
-      // style={{ backgroundColor: "#ffffff" }}
       ref={drawer}
       drawerWidth={300}
       drawerPosition="left"

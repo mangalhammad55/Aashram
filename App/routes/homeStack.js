@@ -7,6 +7,8 @@ import HomeScreen from "../Pages/HomeScreen";
 import SocialMedia from "../Pages/SocialMedia";
 import Location from "../Pages/Location";
 import PawanSmaran from "../Pages/PawanSmaran";
+import AartiStrot from "../Pages/AartiStrot";
+import AboutUs from "../Pages/AboutUs";
 
 const screens = {
   WelcomeScreen: {
@@ -29,6 +31,12 @@ const screens = {
   },
   PawanSmaran: {
     screen: PawanSmaran,
+  },
+  AartiStrot: {
+    screen: AartiStrot,
+  },
+  AboutUs: {
+    screen: AboutUs,
   },
 };
 const HomeStack = createStackNavigator(screens);

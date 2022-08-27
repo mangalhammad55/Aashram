@@ -51,13 +51,11 @@ export default function HomeScreen({ navigation }) {
   );
   return (
     <DrawerLayoutAndroid
-      // style={{ backgroundColor: "#ffffff" }}
       ref={drawer}
       drawerWidth={300}
       drawerPosition="left"
       renderNavigationView={drawerNavigation}
     >
-      {/* <SafeAreaView> */}
       <View>
         <Image
           style={{
@@ -72,18 +70,13 @@ export default function HomeScreen({ navigation }) {
         ></Image>
       </View>
       <View style={styles.slider}>
-        {/* <Button
-          title="Open drawer"
-          onPress={() => drawer.current.openDrawer()}
-        /> */}
-
         <SliderBox
           sliderBoxHeight={200}
           images={[
-            "https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg",
             "https://i.ytimg.com/vi/_uX7dYe329c/hqdefault.jpg",
             "https://i.ytimg.com/vi/W42bC3OP_tQ/maxresdefault.jpg",
             "https://i.ytimg.com/vi/7MBxgR2P7qQ/maxresdefault.jpg",
+            "https://www.youtube.com/watch?v=7MBxgR2P7qQ",
           ]}
           dotColor="#FF9933"
           inactiveDotColor="#90A4AE"
@@ -93,68 +86,16 @@ export default function HomeScreen({ navigation }) {
           imageLoadingColor="#FF9933"
         />
       </View>
-      {/* </SafeAreaView> */}
     </DrawerLayoutAndroid>
   );
 }
 
 const styles = StyleSheet.create({
-  item: {
-    padding: 5,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    alignItems: "center",
-    width: 160,
-    height: 45,
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: "#b3b3cc",
-    backgroundColor: "#FF9933",
-  },
   hamburgerButton: {
     marginTop: 10,
-  },
-  itemTitle: {
-    fontSize: 20,
-    textAlign: "center",
-  },
-  titleButton: {
-    fontSize: 24,
-  },
-  text: {
-    fontSize: 20,
-    paddingLeft: 20,
-    textAlign: "center",
-    color: "#FF9933",
-    paddingTop: 10,
-  },
-  pawanSmaranText: {
-    fontSize: 20,
-    paddingLeft: 20,
-    paddingTop: 10,
-    color: "#FF9933",
-  },
-  wayToAashramBtn: {
-    marginTop: 12,
-    marginBottom: 12,
-    padding: 10,
   },
   slider: {
     paddingTop: 20,
     paddingBottom: 20,
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 16,
-  },
-  navigationContainer: {
-    backgroundColor: "#ecf0f1",
-  },
-  paragraph: {
-    padding: 16,
-    fontSize: 15,
-    textAlign: "center",
   },
 });
