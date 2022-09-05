@@ -23,6 +23,12 @@ export default function AboutUs({ navigation }) {
       </View>
       <View style={styles.hamburgerButton}>
         <Button
+          title="Introduction"
+          onPress={() => navigation.navigate("Introduction")}
+        />
+      </View>
+      <View style={styles.hamburgerButton}>
+        <Button
           title="Pawan Smaran"
           onPress={() => navigation.navigate("PawanSmaran")}
         />
@@ -43,6 +49,12 @@ export default function AboutUs({ navigation }) {
         <Button
           title="Aarti, strot"
           onPress={() => navigation.navigate("AartiStrot")}
+        />
+      </View>
+      <View style={styles.hamburgerButton}>
+        <Button
+          title="About Us"
+          onPress={() => navigation.navigate("AboutUs")}
         />
       </View>
     </View>
@@ -66,7 +78,14 @@ export default function AboutUs({ navigation }) {
         source={require("../assets/menu2.png")}
       ></Image>
       <View style={{ padding: 10 }}>
-        <Text style={{ marginBottom: 10, marginTop: 20 }}>About us</Text>
+        <Text style={{ marginBottom: 10, marginTop: 20, fontSize: 20 }}>
+          This is informative application which contains the information related
+          to Ambika Aashram Balipur Dham.
+          {"\n"}
+          {"\n"}
+          {"\n"}For any query contact here{"\n"}
+          babajibalipur11@gmail.com
+        </Text>
       </View>
     </DrawerLayoutAndroid>
   );

@@ -14,7 +14,7 @@ import {
 export default function SocialMedia({ navigation }) {
   const drawer = useRef(null);
   const handleYoutubeClick = () => {
-    const url = "";
+    const url = "https://www.youtube.com/channel/UCykcDAktL2RvBe7ozuiILSA";
     Linking.openURL(url);
   };
   const handleIntagramClick = () => {
@@ -31,6 +31,12 @@ export default function SocialMedia({ navigation }) {
         <Button
           title="Home"
           onPress={() => navigation.navigate("HomeScreen")}
+        />
+      </View>
+      <View style={styles.hamburgerButton}>
+        <Button
+          title="Introduction"
+          onPress={() => navigation.navigate("Introduction")}
         />
       </View>
       <View style={styles.hamburgerButton}>
@@ -83,12 +89,20 @@ export default function SocialMedia({ navigation }) {
         onTouchStart={() => drawer.current.openDrawer()}
         source={require("../assets/menu2.png")}
       ></Image>
-      <View style={{ padding: 10 }}>
+      <View
+        style={{
+          padding: 10,
+        }}
+      >
         <Text style={{ marginBottom: 10, marginTop: 20 }}>
           Click below button to open Aashram's official youtube channel.
         </Text>
         <Image
-          style={{ height: 40, width: 200 }}
+          style={{
+            height: 40,
+            width: 200,
+            marginLeft: 90,
+          }}
           onTouchStart={handleYoutubeClick}
           source={require("../assets/youtube.png")}
         ></Image>
@@ -97,7 +111,7 @@ export default function SocialMedia({ navigation }) {
           Click below button to open Aashram's Intagram handle.
         </Text>
         <Image
-          style={{ height: 50, width: 200 }}
+          style={{ height: 50, width: 200, marginLeft: 90 }}
           onTouchStart={handleIntagramClick}
           source={require("../assets/instagram.png")}
         ></Image>
@@ -105,7 +119,7 @@ export default function SocialMedia({ navigation }) {
           Click below button to open Aashram's Facebook page.
         </Text>
         <Image
-          style={{ height: 50, width: 200 }}
+          style={{ height: 50, width: 200, marginLeft: 90 }}
           onTouchStart={handleFacebookClick}
           source={require("../assets/facebook.png")}
         ></Image>

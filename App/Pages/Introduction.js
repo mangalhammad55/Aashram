@@ -11,18 +11,28 @@ import {
   Image,
 } from "react-native";
 
-export default function AartiStrot({ navigation }) {
+export default function Introduction({ navigation }) {
   const drawer = useRef(null);
-  const [showAarti, setShowAarti] = useState(false);
-  const [showStrot, setShowStrot] = useState(false);
-  const handleAartiClick = () => {
-    setShowStrot(false);
-    setShowAarti(true);
+  const [showBabajiIntro, setShowBabajiIntro] = useState(true);
+  const [showYogeshjiIntro, setShowBYogeshjiIntro] = useState(false);
+  const [showShudhakarjiIntro, setShowShudhakarjiIntro] = useState(false);
+
+  const handleBabajiClick = () => {
+    setShowBabajiIntro(true);
+    setShowBYogeshjiIntro(false);
+    setShowShudhakarjiIntro(false);
   };
-  const handleStrotClick = () => {
-    setShowAarti(false);
-    setShowStrot(true);
+  const handleYogeshjiClick = () => {
+    setShowBabajiIntro(false);
+    setShowBYogeshjiIntro(true);
+    setShowShudhakarjiIntro(false);
   };
+  const handleShudhakarjiClick = () => {
+    setShowBabajiIntro(false);
+    setShowBYogeshjiIntro(false);
+    setShowShudhakarjiIntro(true);
+  };
+
   const drawerNavigation = () => (
     <View style={{ padding: 10 }}>
       <View style={styles.hamburgerButton}>
@@ -76,34 +86,44 @@ export default function AartiStrot({ navigation }) {
       drawerPosition="left"
       renderNavigationView={drawerNavigation}
     >
-      <Image
-        style={{
-          height: 40,
-          width: 40,
-          padding: 10,
-          marginLeft: 10,
-          marginTop: 10,
-        }}
-        onTouchStart={() => drawer.current.openDrawer()}
-        source={require("../assets/menu2.png")}
-      ></Image>
+      <View>
+        <Image
+          style={{
+            height: 40,
+            width: 40,
+            padding: 10,
+            marginLeft: 10,
+            marginTop: 10,
+          }}
+          onTouchStart={() => drawer.current.openDrawer()}
+          source={require("../assets/menu2.png")}
+        ></Image>
+      </View>
       <View style={{ padding: 10, marginTop: 10 }}>
         <Button
           style={{ marginBottom: 10, marginTop: 20 }}
-          title="Aarti"
-          onPress={handleAartiClick}
+          title="Baba ji"
+          onPress={handleBabajiClick}
         ></Button>
       </View>
       <View style={{ padding: 10 }}>
         <Button
           style={{ marginBottom: 10, marginTop: 20 }}
-          title="Strot"
-          onPress={handleStrotClick}
+          title="Yogeshwar maharaj ji"
+          onPress={handleYogeshjiClick}
         ></Button>
       </View>
-      <View>
-        {showAarti ? <Text>aarti</Text> : null}
-        {showStrot ? <Text>stort</Text> : null}
+      <View style={{ padding: 10 }}>
+        <Button
+          style={{ marginBottom: 10, marginTop: 20 }}
+          title="Shudhakar maharaj ji"
+          onPress={handleShudhakarjiClick}
+        ></Button>
+      </View>
+      <View style={{ padding: 10 }}>
+        {showBabajiIntro ? <Text>Babaji</Text> : null}
+        {showYogeshjiIntro ? <Text>yogesh ji</Text> : null}
+        {showShudhakarjiIntro ? <Text>shudhakar ji</Text> : null}
       </View>
     </DrawerLayoutAndroid>
   );
@@ -112,5 +132,9 @@ export default function AartiStrot({ navigation }) {
 const styles = StyleSheet.create({
   hamburgerButton: {
     marginTop: 10,
+  },
+  slider: {
+    paddingTop: 20,
+    paddingBottom: 20,
   },
 });

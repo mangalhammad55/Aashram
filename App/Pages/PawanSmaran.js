@@ -77,6 +77,12 @@ export default function PawanSmaran({ navigation }) {
       </View>
       <View style={styles.hamburgerButton}>
         <Button
+          title="Introduction"
+          onPress={() => navigation.navigate("Introduction")}
+        />
+      </View>
+      <View style={styles.hamburgerButton}>
+        <Button
           title="Pawan Smaran"
           onPress={() => navigation.navigate("PawanSmaran")}
         />
@@ -95,8 +101,14 @@ export default function PawanSmaran({ navigation }) {
       </View>
       <View style={styles.hamburgerButton}>
         <Button
-          title="Close drawer"
-          onPress={() => drawer.current.closeDrawer()}
+          title="Aarti, strot"
+          onPress={() => navigation.navigate("AartiStrot")}
+        />
+      </View>
+      <View style={styles.hamburgerButton}>
+        <Button
+          title="About Us"
+          onPress={() => navigation.navigate("AboutUs")}
         />
       </View>
     </View>

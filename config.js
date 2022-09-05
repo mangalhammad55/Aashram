@@ -2,13 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBE4S3HMg2opObDAOHHcKkaC2cTpHRgM9o",
-  authDomain: "aashram-auth.firebaseapp.com",
-  projectId: "aashram-auth",
-  storageBucket: "aashram-auth.appspot.com",
-  messagingSenderId: "291036330771",
-  appId: "1:291036330771:web:cbda2612df841a4d6a38e6",
-  measurementId: "G-QC4GELG90W",
+  apiKey: "AIzaSyDBx_y7LCWlwYCPa1bUqoNb_8sRi9JkcC4",
+  authDomain: "aashram-auth-test1.firebaseapp.com",
+  projectId: "aashram-auth-test1",
+  storageBucket: "aashram-auth-test1.appspot.com",
+  messagingSenderId: "404141153791",
+  appId: "1:404141153791:web:fe31c788f5254b4c795bca",
 };
 
 const app = initializeApp(firebaseConfig);
