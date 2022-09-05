@@ -10,11 +10,21 @@ import {
   DrawerLayoutAndroid,
   Image,
 } from "react-native";
-import { SliderBox } from "react-native-image-slider-box";
 
-export default function HomeScreen({ navigation }) {
+export default function SocialMedia({ navigation }) {
   const drawer = useRef(null);
-
+  const handleYoutubeClick = () => {
+    const url = "https://www.youtube.com/channel/UCykcDAktL2RvBe7ozuiILSA";
+    Linking.openURL(url);
+  };
+  const handleIntagramClick = () => {
+    const url = "";
+    Linking.openURL(url);
+  };
+  const handleFacebookClick = () => {
+    const url = "";
+    Linking.openURL(url);
+  };
   const drawerNavigation = () => (
     <View style={{ padding: 10 }}>
       <View style={styles.hamburgerButton}>
@@ -68,35 +78,51 @@ export default function HomeScreen({ navigation }) {
       drawerPosition="left"
       renderNavigationView={drawerNavigation}
     >
-      <View>
+      <Image
+        style={{
+          height: 40,
+          width: 40,
+          padding: 10,
+          marginLeft: 10,
+          marginTop: 10,
+        }}
+        onTouchStart={() => drawer.current.openDrawer()}
+        source={require("../assets/menu2.png")}
+      ></Image>
+      <View
+        style={{
+          padding: 10,
+        }}
+      >
+        <Text style={{ marginBottom: 10, marginTop: 20 }}>
+          Click below button to open Aashram's official youtube channel.
+        </Text>
         <Image
           style={{
             height: 40,
-            width: 40,
-            padding: 10,
-            marginLeft: 10,
-            marginTop: 10,
+            width: 200,
+            marginLeft: 90,
           }}
-          onTouchStart={() => drawer.current.openDrawer()}
-          source={require("../assets/menu2.png")}
+          onTouchStart={handleYoutubeClick}
+          source={require("../assets/youtube.png")}
         ></Image>
-      </View>
-      <View style={styles.slider}>
-        <SliderBox
-          sliderBoxHeight={200}
-          images={[
-            "https://i.ytimg.com/vi/_uX7dYe329c/hqdefault.jpg",
-            "https://i.ytimg.com/vi/W42bC3OP_tQ/maxresdefault.jpg",
-            "https://i.ytimg.com/vi/7MBxgR2P7qQ/maxresdefault.jpg",
-            "https://www.youtube.com/watch?v=7MBxgR2P7qQ",
-          ]}
-          dotColor="#FF9933"
-          inactiveDotColor="#90A4AE"
-          autoplay
-          circleLoop
-          ImageComponentStyle={{ borderRadius: 15, width: "97%" }}
-          imageLoadingColor="#FF9933"
-        />
+        {/* <Button onPress={handleYoutubeClick} title="youtube"></Button> */}
+        <Text style={{ marginBottom: 10, marginTop: 20 }}>
+          Click below button to open Aashram's Intagram handle.
+        </Text>
+        <Image
+          style={{ height: 50, width: 200, marginLeft: 90 }}
+          onTouchStart={handleIntagramClick}
+          source={require("../assets/instagram.png")}
+        ></Image>
+        <Text style={{ marginBottom: 10, marginTop: 20 }}>
+          Click below button to open Aashram's Facebook page.
+        </Text>
+        <Image
+          style={{ height: 50, width: 200, marginLeft: 90 }}
+          onTouchStart={handleFacebookClick}
+          source={require("../assets/facebook.png")}
+        ></Image>
       </View>
     </DrawerLayoutAndroid>
   );
@@ -105,9 +131,5 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   hamburgerButton: {
     marginTop: 10,
-  },
-  slider: {
-    paddingTop: 20,
-    paddingBottom: 20,
   },
 });

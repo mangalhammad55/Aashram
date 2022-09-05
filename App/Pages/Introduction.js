@@ -10,10 +10,28 @@ import {
   DrawerLayoutAndroid,
   Image,
 } from "react-native";
-import { SliderBox } from "react-native-image-slider-box";
 
-export default function HomeScreen({ navigation }) {
+export default function Introduction({ navigation }) {
   const drawer = useRef(null);
+  const [showBabajiIntro, setShowBabajiIntro] = useState(true);
+  const [showYogeshjiIntro, setShowBYogeshjiIntro] = useState(false);
+  const [showShudhakarjiIntro, setShowShudhakarjiIntro] = useState(false);
+
+  const handleBabajiClick = () => {
+    setShowBabajiIntro(true);
+    setShowBYogeshjiIntro(false);
+    setShowShudhakarjiIntro(false);
+  };
+  const handleYogeshjiClick = () => {
+    setShowBabajiIntro(false);
+    setShowBYogeshjiIntro(true);
+    setShowShudhakarjiIntro(false);
+  };
+  const handleShudhakarjiClick = () => {
+    setShowBabajiIntro(false);
+    setShowBYogeshjiIntro(false);
+    setShowShudhakarjiIntro(true);
+  };
 
   const drawerNavigation = () => (
     <View style={{ padding: 10 }}>
@@ -81,22 +99,31 @@ export default function HomeScreen({ navigation }) {
           source={require("../assets/menu2.png")}
         ></Image>
       </View>
-      <View style={styles.slider}>
-        <SliderBox
-          sliderBoxHeight={200}
-          images={[
-            "https://i.ytimg.com/vi/_uX7dYe329c/hqdefault.jpg",
-            "https://i.ytimg.com/vi/W42bC3OP_tQ/maxresdefault.jpg",
-            "https://i.ytimg.com/vi/7MBxgR2P7qQ/maxresdefault.jpg",
-            "https://www.youtube.com/watch?v=7MBxgR2P7qQ",
-          ]}
-          dotColor="#FF9933"
-          inactiveDotColor="#90A4AE"
-          autoplay
-          circleLoop
-          ImageComponentStyle={{ borderRadius: 15, width: "97%" }}
-          imageLoadingColor="#FF9933"
-        />
+      <View style={{ padding: 10, marginTop: 10 }}>
+        <Button
+          style={{ marginBottom: 10, marginTop: 20 }}
+          title="Baba ji"
+          onPress={handleBabajiClick}
+        ></Button>
+      </View>
+      <View style={{ padding: 10 }}>
+        <Button
+          style={{ marginBottom: 10, marginTop: 20 }}
+          title="Yogeshwar maharaj ji"
+          onPress={handleYogeshjiClick}
+        ></Button>
+      </View>
+      <View style={{ padding: 10 }}>
+        <Button
+          style={{ marginBottom: 10, marginTop: 20 }}
+          title="Shudhakar maharaj ji"
+          onPress={handleShudhakarjiClick}
+        ></Button>
+      </View>
+      <View style={{ padding: 10 }}>
+        {showBabajiIntro ? <Text>Babaji</Text> : null}
+        {showYogeshjiIntro ? <Text>yogesh ji</Text> : null}
+        {showShudhakarjiIntro ? <Text>shudhakar ji</Text> : null}
       </View>
     </DrawerLayoutAndroid>
   );

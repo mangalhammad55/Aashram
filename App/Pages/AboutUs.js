@@ -10,11 +10,9 @@ import {
   DrawerLayoutAndroid,
   Image,
 } from "react-native";
-import { SliderBox } from "react-native-image-slider-box";
 
-export default function HomeScreen({ navigation }) {
+export default function AboutUs({ navigation }) {
   const drawer = useRef(null);
-
   const drawerNavigation = () => (
     <View style={{ padding: 10 }}>
       <View style={styles.hamburgerButton}>
@@ -68,35 +66,26 @@ export default function HomeScreen({ navigation }) {
       drawerPosition="left"
       renderNavigationView={drawerNavigation}
     >
-      <View>
-        <Image
-          style={{
-            height: 40,
-            width: 40,
-            padding: 10,
-            marginLeft: 10,
-            marginTop: 10,
-          }}
-          onTouchStart={() => drawer.current.openDrawer()}
-          source={require("../assets/menu2.png")}
-        ></Image>
-      </View>
-      <View style={styles.slider}>
-        <SliderBox
-          sliderBoxHeight={200}
-          images={[
-            "https://i.ytimg.com/vi/_uX7dYe329c/hqdefault.jpg",
-            "https://i.ytimg.com/vi/W42bC3OP_tQ/maxresdefault.jpg",
-            "https://i.ytimg.com/vi/7MBxgR2P7qQ/maxresdefault.jpg",
-            "https://www.youtube.com/watch?v=7MBxgR2P7qQ",
-          ]}
-          dotColor="#FF9933"
-          inactiveDotColor="#90A4AE"
-          autoplay
-          circleLoop
-          ImageComponentStyle={{ borderRadius: 15, width: "97%" }}
-          imageLoadingColor="#FF9933"
-        />
+      <Image
+        style={{
+          height: 40,
+          width: 40,
+          padding: 10,
+          marginLeft: 10,
+          marginTop: 10,
+        }}
+        onTouchStart={() => drawer.current.openDrawer()}
+        source={require("../assets/menu2.png")}
+      ></Image>
+      <View style={{ padding: 10 }}>
+        <Text style={{ marginBottom: 10, marginTop: 20, fontSize: 20 }}>
+          This is informative application which contains the information related
+          to Ambika Aashram Balipur Dham.
+          {"\n"}
+          {"\n"}
+          {"\n"}For any query contact here{"\n"}
+          babajibalipur11@gmail.com
+        </Text>
       </View>
     </DrawerLayoutAndroid>
   );
@@ -105,9 +94,5 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   hamburgerButton: {
     marginTop: 10,
-  },
-  slider: {
-    paddingTop: 20,
-    paddingBottom: 20,
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,48 +6,85 @@ import {
   Button,
   SafeAreaView,
   TextInput,
+  ActivityIndicator,
 } from "react-native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config";
 
 export default function Login({ navigation }) {
+  const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState();
   const [password, setPassword] = useState();
   const signupButtonHandler = () => {
     navigation.navigate("Signup");
   };
+
+  // useEffect(() => {
+  //   setLoading(false);
+  // }, []);
+
   const handleLogin = () => {
-    console.log(userId, password);
-    navigation.navigate("HomeScreen");
+    setLoading(true);
+    console.log(userId, password, "idpass");
+
+    signInWithEmailAndPassword(auth, userId, password)
+      .then((userCredential) => {
+        // Signed in
+        console.log("loginsuccess");
+        console.log(userCredential, "user creds");
+        const user = userCredential.user;
+        // ...
+        navigation.navigate("HomeScreen");
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.log(error, " login error");
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+    console.log("login completea");
   };
+
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.form}>
-        <TextInput
-          style={styles.inputField}
-          onChangeText={setUserId}
-          value={userId}
-          placeholder="User Id"
-        />
-        <TextInput
-          style={styles.inputField}
-          onChangeText={setPassword}
-          value={password}
-          autoComplete="password"
-          placeholder="Password"
-        />
-        <Button
-          style={styles.loginButton}
-          onPress={handleLogin}
-          title="login"
-        />
-      </View>
-      <View style={styles.signupContainer}>
-        <Button
-          style={styles.signupButton}
+      {loading ? (
+        <ActivityIndicator
+          style={{ flex: 1, justifyContent: "center" }}
+          size="large"
           color="#FF9933"
-          title="Sign up"
-          onPress={signupButtonHandler}
-        ></Button>
-      </View>
+        />
+      ) : (
+        <>
+          <View style={styles.loginForm}>
+            <TextInput
+              style={styles.inputField}
+              onChangeText={setUserId}
+              value={userId}
+              placeholder="User Id"
+            />
+            <TextInput
+              style={styles.inputField}
+              onChangeText={setPassword}
+              value={password}
+              autoComplete="password"
+              placeholder="Password"
+            />
+            <Button
+              style={styles.loginButton}
+              onPress={handleLogin}
+              title="login"
+            />
+          </View>
+          <View style={styles.signupContainer}>
+            <Button
+              style={styles.signupButton}
+              color="#FF9933"
+              title="Sign up"
+              onPress={signupButtonHandler}
+            ></Button>
+          </View>
+        </>
+      )}
     </SafeAreaView>
   );
 }
@@ -69,7 +106,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     padding: 10,
   },
-  form: {
+  loginForm: {
     position: "absolute",
     top: 50,
     width: "95%",

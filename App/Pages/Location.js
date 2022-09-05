@@ -10,11 +10,13 @@ import {
   DrawerLayoutAndroid,
   Image,
 } from "react-native";
-import { SliderBox } from "react-native-image-slider-box";
 
-export default function HomeScreen({ navigation }) {
+export default function Location({ navigation }) {
   const drawer = useRef(null);
-
+  const handleWTAClick = () => {
+    const url = "https://goo.gl/maps/7c7D7Skm7k4maXD76";
+    Linking.openURL(url);
+  };
   const drawerNavigation = () => (
     <View style={{ padding: 10 }}>
       <View style={styles.hamburgerButton}>
@@ -68,35 +70,22 @@ export default function HomeScreen({ navigation }) {
       drawerPosition="left"
       renderNavigationView={drawerNavigation}
     >
-      <View>
-        <Image
-          style={{
-            height: 40,
-            width: 40,
-            padding: 10,
-            marginLeft: 10,
-            marginTop: 10,
-          }}
-          onTouchStart={() => drawer.current.openDrawer()}
-          source={require("../assets/menu2.png")}
-        ></Image>
-      </View>
-      <View style={styles.slider}>
-        <SliderBox
-          sliderBoxHeight={200}
-          images={[
-            "https://i.ytimg.com/vi/_uX7dYe329c/hqdefault.jpg",
-            "https://i.ytimg.com/vi/W42bC3OP_tQ/maxresdefault.jpg",
-            "https://i.ytimg.com/vi/7MBxgR2P7qQ/maxresdefault.jpg",
-            "https://www.youtube.com/watch?v=7MBxgR2P7qQ",
-          ]}
-          dotColor="#FF9933"
-          inactiveDotColor="#90A4AE"
-          autoplay
-          circleLoop
-          ImageComponentStyle={{ borderRadius: 15, width: "97%" }}
-          imageLoadingColor="#FF9933"
-        />
+      <Image
+        style={{
+          height: 40,
+          width: 40,
+          padding: 10,
+          marginLeft: 10,
+          marginTop: 10,
+        }}
+        onTouchStart={() => drawer.current.openDrawer()}
+        source={require("../assets/menu2.png")}
+      ></Image>
+      <View style={{ padding: 10, marginTop: 10 }}>
+        <Text style={{ marginBottom: 10 }}>
+          Click below button to open Aashram location on google map.
+        </Text>
+        <Button onPress={handleWTAClick} title="way to aashram"></Button>
       </View>
     </DrawerLayoutAndroid>
   );
@@ -105,9 +94,5 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   hamburgerButton: {
     marginTop: 10,
-  },
-  slider: {
-    paddingTop: 20,
-    paddingBottom: 20,
   },
 });

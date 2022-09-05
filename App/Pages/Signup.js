@@ -8,6 +8,8 @@ import {
   Label,
   SafeAreaView,
 } from "react-native";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config";
 
 export default function Signup({ navigation }) {
   const [name, setName] = useState();
@@ -21,6 +23,21 @@ export default function Signup({ navigation }) {
 
   const handleCreateAccount = () => {
     console.log(name, mobileNo, emailId, password);
+
+    createUserWithEmailAndPassword(auth, emailId, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        navigation.navigate("HomeScreen");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        // ..
+      });
   };
   return (
     <SafeAreaView style={styles.container}>
